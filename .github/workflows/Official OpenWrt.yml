@@ -23,8 +23,8 @@ env:
   DIY_SH: scripts/official.sh
   IPV6MOD_IN_FIRMWARE: true
   KMODS_IN_FIRMWARE: true
-  UPLOAD_WETRANSFER: true
-  UPLOAD_COWTRANSFER: true
+  UPLOAD_WETRANSFER: false
+  UPLOAD_COWTRANSFER: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
 
