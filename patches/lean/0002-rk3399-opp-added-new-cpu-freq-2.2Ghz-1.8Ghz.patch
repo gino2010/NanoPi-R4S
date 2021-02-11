@@ -41,11 +41,11 @@ index 0000000..c8a9620
 ++        
 ++		opp07 {
 ++			opp-hz = /bits/ 64 <1608000000>;
-++			opp-microvolt = <1200000>;
+++			opp-microvolt = <1225000>;
 ++		};
 ++		opp08 {
 ++			opp-hz = /bits/ 64 <1800000000>;
-++			opp-microvolt = <1250000>;
+++			opp-microvolt = <1275000>;
 ++		};
 ++        
 + 	};
@@ -65,7 +65,7 @@ index 0000000..c8a9620
 ++        
 ++		opp09 {
 ++			opp-hz = /bits/ 64 <2208000000>;
-++			opp-microvolt = <1300000>;
+++			opp-microvolt = <1325000>;
 ++		};
 ++        
 + 	};
