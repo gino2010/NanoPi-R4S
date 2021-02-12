@@ -8,9 +8,9 @@
 
 name: Official OpenWrt
 
-#on:
-#  repository_dispatch:
-#  workflow_dispatch:
+on:
+  repository_dispatch:
+  workflow_dispatch:
 #  schedule:
 #    - cron: 0 4 * * 5
 #    timezone: "Asia/Shanghai"
