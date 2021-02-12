@@ -16,15 +16,19 @@ You can edit below item to adjust partition size
 CONFIG_TARGET_ROOTFS_PARTSIZE=14336
 ```
 
-## Crontab Job
+## How to Build Image
+This repo is built by github actions
+
+### Github Actions
+https://docs.github.com/en/actions
+
+### Crontab Job
 Use this website to check you scheduler job
 
 https://crontab.guru/
 
-## Features
-* [SuLingGG/OpenWrt-Rpi/README.md](https://github.com/SuLingGG/OpenWrt-Rpi/blob/main/README.md)
-
 ## References
+* [SuLingGG/OpenWrt-Rpi/README.md](https://github.com/SuLingGG/OpenWrt-Rpi/blob/main/README.md)
 * https://github.com/coolsnowwolf/lede
 * https://github.com/SuLingGG/OpenWrt-Rpi
 * https://github.com/friendlyarm/friendlywrt
