@@ -6,7 +6,7 @@
 # Blog: https://p3terx.com
 #=================================================
 
-name: Lean OpenWrt 16G
+name: Official OpenWrt
 
 on:
   repository_dispatch:
@@ -17,10 +17,10 @@ on:
   #   types: started
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
-  CONFIG_FILE: configs/lean/lean-16G.config
-  DIY_SH: scripts/lean.sh
+  CONFIG_FILE: configs/official/official-16G.config
+  DIY_SH: scripts/official.sh
   IPV6MOD_IN_FIRMWARE: true
   KMODS_IN_FIRMWARE: true
   UPLOAD_WETRANSFER: false
@@ -60,12 +60,14 @@ jobs:
         git config --global user.email "git@github.com"
         git config --global user.name "GitHub"
         git clone $REPO_URL -b $REPO_BRANCH openwrt
+        cd openwrt
 
     - name: Update Feeds
       id: update
       run: |
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
+        # sed -i 's/luci.git/luci.git\;openwrt-19.07/g' feeds.conf.default
         echo "::set-output name=OPENWRTROOT::$(echo $PWD)"
         ./scripts/feeds update -a
 
@@ -83,6 +85,7 @@ jobs:
         ../$DIY_SH
         ../scripts/preset-clash-core.sh armv8
         ../scripts/preset-terminal-tools.sh
+        ../scripts/create-acl.sh -a
 
     - name: Download Package
       id: package
@@ -107,7 +110,7 @@ jobs:
         make tools/compile -j$(nproc) || make tools/compile -j1 V=s
         make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
         make target/compile -j$(nproc) || make target/compile -j1 V=s IGNORE_ERRORS=1
-        make diffconfig
+        make buildinfo
         make package/compile -j$(nproc) IGNORE_ERRORS=1 || make package/compile -j1 V=s IGNORE_ERRORS=1
         make package/index
         cd $OPENWRTROOT/bin/packages/*
@@ -143,12 +146,12 @@ jobs:
         then
             mkdir -p files/www/snapshots
             cp -r bin/targets files/www/snapshots
-            cp ../configs/opkg/distfeeds-18.06-local.conf files/etc/opkg/distfeeds.conf
+            cp ../configs/opkg/distfeeds-19.07-local.conf files/etc/opkg/distfeeds.conf
         else
-            cp ../configs/opkg/distfeeds-18.06-remote.conf files/etc/opkg/distfeeds.conf
+            cp ../configs/opkg/distfeeds-19.07-remote.conf files/etc/opkg/distfeeds.conf
         fi
         cp files/etc/opkg/distfeeds.conf.server files/etc/opkg/distfeeds.conf.mirror
-        sed -i "s/http:\/\/192.168.123.100:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/lean/g" files/etc/opkg/distfeeds.conf.mirror
+        sed -i "s/http:\/\/192.168.123.100:2345\/snapshots/https:\/\/openwrt.cc\/snapshots\/$(date +"%Y-%m-%d")\/offical/g" files/etc/opkg/distfeeds.conf.mirror
         if "$IPV6MOD_IN_FIRMWARE" = 'true'
         then
             mkdir -p files/www/ipv6-modules
@@ -169,7 +172,7 @@ jobs:
       with:
         name: bin-archive
         path: openwrt/bin
-
+        
   Upload:
     needs: [Build]
     runs-on: ubuntu-18.04
@@ -185,7 +188,7 @@ jobs:
           echo "SUBTARGET=$(echo '${{needs.Build.outputs.SUBTARGET}}')" >> $GITHUB_ENV
           echo "FIRMWARE=$(echo '${{needs.Build.outputs.FIRMWARE}}')" >> $GITHUB_ENV
           echo "GENERATE_STATUS=$(echo '${{needs.Build.outputs.GENERATE_STATUS}}')" >> $GITHUB_ENV
-        
+          
       - name: Download Bin Folder
         uses: actions/download-artifact@v2
         if: env.GENERATE_STATUS == 'success'
@@ -236,7 +239,7 @@ jobs:
         id: tag
         if: env.UPLOAD_RELEASE == 'true' && !cancelled()
         run: |
-          echo "::set-output name=release_tag::$(date +"%Y.%m.%d")-Lean-16G"
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d")-Official-16G"
           echo "::set-output name=release_date::$(date +"%Y.%m.%d")"
           touch release.txt
           [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
@@ -249,7 +252,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: ${{ steps.tag.outputs.release_date }} Lean OpenWrt
+          name: ${{ steps.tag.outputs.release_date }} Official OpenWrt
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
           files: ${{ env.FIRMWARE }}/*
