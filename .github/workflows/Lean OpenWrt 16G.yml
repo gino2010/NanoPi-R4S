@@ -13,6 +13,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: 0 4 * * 5 # 4 am on every Friday
+    timezone: "Asia/Shanghai"
   # watch:
   #   types: started
 
