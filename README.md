@@ -8,6 +8,11 @@ Create this own repo to build firmware for myself with customize configuration
 * Default Gateway: 192.168.2.1
 * Default Password: password
 
+## File System Type
+Refer to [Filesystems](https://openwrt.org/docs/techref/filesystems) 
+* squashfs read only (Recommended), smaller image from gzip file
+* Ext2/3/4 is used on x86, x86-64 and for some arch with SD-card rootfs
+
 ## TF Size
 Lean OpenWrt 16G is for 16GB TF card
 

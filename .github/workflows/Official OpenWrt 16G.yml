@@ -12,7 +12,7 @@ on:
   repository_dispatch:
   workflow_dispatch:
 #  schedule:
-#    - cron: 0 4 * * 1,3,5 # 4 am on every Friday
+#    - cron: 0 4 * * 1,3,5 # 4 am on every Monday, Wednesday, Friday
   # watch:
   #   types: started
 
