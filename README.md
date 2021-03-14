@@ -39,4 +39,5 @@ https://crontab.guru/
 * https://github.com/friendlyarm/friendlywrt
 * https://github.com/P3TERX/Actions-OpenWrt
 * https://github.com/WikiHacker/WikiHacker-R4S-2021
+* https://github.com/DHDAXCW/NanoPi-R4S-2021
 * https://github.com/Lienol/openwrt
