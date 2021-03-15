@@ -78,11 +78,11 @@ svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
 #svn co https://github.com/pymumu/luci-app-smartdns/trunk ../luci-app-smartdns
 svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
 
-# Add luci-app-aliddns
-svn co https://github.com/281677160/openwrt-package/trunk/luci-app-aliddns
-
 # Add luci-udptools
 git clone --depth=1 https://github.com/zcy85611/openwrt-luci-kcp-udp
+
+# Add luci-app-wireguard
+svn co https://github.com/openwrt/luci/trunk/applications/luci-app-wireguard
 
 # Add OpenAppFilter
 git clone --depth=1 https://github.com/destan19/OpenAppFilter
@@ -90,10 +90,10 @@ popd
 
 #Add luci-app-ddnsto
 #pushd package/network/services
-#git clone --depth=1 https://github.com/DHDAXCW/ddnsto-openwrt
+#git clone --depth=1 https://github.com/linkease/ddnsto-openwrt
 #popd
 
-# Add luci-app-linkease
+#Add luci-app-linkease
 pushd package/network/services
 git clone --depth=1 https://github.com/linkease/linkease-openwrt
 popd
@@ -124,7 +124,7 @@ popd
 # Fix libssh
 pushd feeds/packages/libs
 rm -rf libssh
-svn co https://github.com/coolsnowwolf/packages/trunk/libs/libssh
+svn co https://github.com/openwrt/packages/trunk/libs/libssh
 popd
 
 # Use Lienol's https-dns-proxy package
@@ -136,7 +136,7 @@ popd
 # Use snapshots syncthing package
 pushd feeds/packages/utils
 rm -rf syncthing
-svn co https://github.com/coolsnowwolf/packages/trunk/utils/syncthing
+svn co https://github.com/openwrt/packages/trunk/utils/syncthing
 popd
 
 # Fix mt76 wireless driver
