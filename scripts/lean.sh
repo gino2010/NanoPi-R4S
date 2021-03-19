@@ -33,6 +33,10 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
 git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
 svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/minieap
 
+# Add luci-app-netdata
+rm -rf ../lean/luci-app-netdata
+svn co https://github.com/281677160/openwrt-package/trunk/luci-app-netdata
+
 # Add ServerChan
 git clone --depth=1 https://github.com/tty228/luci-app-serverchan
 
@@ -160,7 +164,7 @@ sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generat
 git am $GITHUB_WORKSPACE/patches/lean/*.patch
 echo -e " Lean's OpenWrt built on "$(date +%Y.%m.%d)"\n -----------------------------------------------------" >> package/base-files/files/etc/banner
 
-#Add CUPInfo
+# Add CUPInfo
 pushd package/lean/autocore/files/arm/sbin
 cp -f $GITHUB_WORKSPACE/scripts/cpuinfo cpuinfo
 popd
