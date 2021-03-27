@@ -4,7 +4,7 @@ This project is original from https://github.com/LewiVir/NanoPi-R4S
 
 Create this own repo to build firmware for myself with customize configuration
 
-No overclocking, in long-term use, the equipment is maintained at about 47 degrees, no need for additional fans
+No overclocking. In long-term use, the equipment is maintained at about 47 degrees, no need for additional fans
 
 ## Tips
 * Default Gateway: 192.168.2.1
