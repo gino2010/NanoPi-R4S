@@ -17,6 +17,7 @@ Refer to [Filesystems](https://openwrt.org/docs/techref/filesystems)
 
 ## TF Size
 Lean OpenWrt 16G is for 16GB TF card
+
 Lean OpenWrt 32G is for 32GB TF card, and only SQUASHFS file system
 
 You can edit below item to adjust partition size
