@@ -26,7 +26,7 @@ CONFIG_TARGET_ROOTFS_PARTSIZE=14336
 ```
 
 ## How to Build Image
-This repo is built by github actions 
+This repo is built by github actions
 
 ### Github Actions
 https://docs.github.com/en/actions
