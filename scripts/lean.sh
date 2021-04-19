@@ -18,9 +18,6 @@ pushd package/community
 # Add Lienol's Packages
 git clone --depth=1 https://github.com/Lienol/openwrt-package
 
-# Add luci-app-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
-
 # Add luci-app-vssr <M>
 git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb.git
 git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
@@ -35,6 +32,8 @@ git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
 # Add luci-app-netdata
 rm -rf ../lean/luci-app-netdata
 svn co https://github.com/281677160/openwrt-package/trunk/luci-app-netdata
+rm -rf ../../customfeeds/packages/admin/netdata
+svn co https://github.com/281677160/openwrt-package/trunk/netdata
 
 # Add ServerChan
 git clone --depth=1 https://github.com/tty228/luci-app-serverchan
@@ -64,13 +63,24 @@ git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon
 git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../lean/luci-theme-argon
 
+# Add luci-app-smartdns & smartdns
+svn co https://github.com/281677160/openwrt-package/trunk/luci-app-smartdns
+svn co https://github.com/281677160/openwrt-package/trunk/smartdns
+
 # Add subconverter
 git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
 
-# Add smartdns
-svn co https://github.com/pymumu/smartdns/trunk/package/openwrt ../smartdns
-#svn co https://github.com/pymumu/luci-app-smartdns/trunk ../luci-app-smartdns
-svn co https://github.com/immortalwrt/immortalwrt/trunk/package/ntlf9t/luci-app-smartdns ../luci-app-smartdns
+# Add extra wireless drivers
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8812au-ac
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8821cu
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8188eu
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8192du
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl88x2bu
+
+# Add dafeiji
+#svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/luci-app-cpufreq
+#svn co https://github.com/281677160/openwrt-package/trunk/cpulimit
+#svn co https://github.com/281677160/openwrt-package/trunk/luci-app-cpulimit
 
 # Add luci-udptools
 git clone --depth=1 https://github.com/zcy85611/openwrt-luci-kcp-udp
@@ -95,17 +105,6 @@ popd
 # Add Pandownload
 pushd package/lean
 svn co https://github.com/immortalwrt/immortalwrt/trunk/package/lean/pandownload-fake-server
-popd
-
-# Add driver for rtl8821cu & rtl8812au-ac
-pushd package/lean
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8812au-ac
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl8821cu
-popd
-
-# Add rtl88x2bu
-pushd package/lean
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl88x2bu
 popd
 
 # Mod zzz-default-settings
