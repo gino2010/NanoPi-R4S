@@ -6,6 +6,8 @@ Create this own repo to build firmware for myself with customize configuration
 
 No overclocking. In long-term use, the equipment is maintained at about 47 degrees, no need for additional fans
 
+Remove rarely used components, keep minimum available set
+
 ## Tips
 * Default Gateway: 192.168.2.1
 * Default Password: password
